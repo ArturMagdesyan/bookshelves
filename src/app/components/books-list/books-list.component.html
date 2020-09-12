@@ -1,1 +1,13 @@
-<p>books-list works!</p>
+<div class="books-list">
+  <h5 class="title">Books</h5>
+  <span *ngIf="!books.length">There is no book</span>
+  <div class="book-item" *ngFor="let book of books">
+    <div class="books-name">
+      Title - {{ book.title }}<br>
+      Authors - {{ book.authorName }}
+    </div>
+    <div class="action">
+      <button class="b-delete" (click)="delete(book)">Delete</button>
+    </div>
+  </div>
+</div>

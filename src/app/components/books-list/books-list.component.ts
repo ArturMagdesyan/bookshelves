@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+import { IBook } from '../../../models/book';
+import {BooksService} from '../../services/books.service';
 
 @Component({
   selector: 'app-books-list',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./books-list.component.scss']
 })
 export class BooksListComponent implements OnInit {
-
-  constructor() { }
+  @Input('books') books: IBook[];
+  @Input('shelveId') shelveId: string;
+  constructor(
+    private booksService: BooksService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  public delete(book: IBook): void {
+    confirm(`You really want to delete the book: ${book.title}`) &&
+    this.booksService.delete(this.shelveId, book.id);
+  }
 }
