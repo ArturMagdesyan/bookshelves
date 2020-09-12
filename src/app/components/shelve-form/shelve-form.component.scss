@@ -1,0 +1,39 @@
+.shelve-from {
+  min-height: 230px;
+  text-align: center;
+  .shelve-name {
+    padding: 15px;
+    font-family: Arial;
+    font-size: 32px;
+  }
+  .form-control {
+    outline: none;
+    min-width: 300px;
+    border-radius: 6px;
+    border: 3px solid greenyellow;
+    padding: 5px;
+  }
+  .is-invalid {
+    border-color: red;
+  }
+  .invalid-feedback {
+    color: red;
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+  .button-add {
+    outline: none;
+    margin-top: 20px;
+
+    background: greenyellow;
+    border: none;
+    border-radius: 6px;
+    width: 180px;
+    padding: 5px;
+    font-size: 18px;
+  }
+  .button-add:hover {
+    color: azure;
+    transition: all 0.6s ease;
+  }
+}
