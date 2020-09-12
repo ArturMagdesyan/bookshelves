@@ -1,0 +1,21 @@
+.shelve {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .shelve-title {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 32px;
+    color: red;
+  }
+  .books-list {
+    width: 30%;
+  }
+  .books-search {
+    width: 40%;
+  }
+  .book-form {
+    width: 30%;
+  }
+}

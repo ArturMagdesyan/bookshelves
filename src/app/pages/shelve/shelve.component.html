@@ -1,1 +1,17 @@
-<p>shelve works!</p>
+<div class="shelve">
+  <h5 class="shelve-title">{{ shelve.name }}</h5>
+  <div class="books-list">
+    <app-books-list
+      [shelveId]="shelve.id"
+      [books]=shelve.books
+    ></app-books-list>
+  </div>
+  <div class="books-search">
+    <app-books-search></app-books-search>
+  </div>
+  <div class="book-form">
+    <app-book-form [shelveId]="shelve.id"></app-book-form>
+  </div>
+</div>
+
+

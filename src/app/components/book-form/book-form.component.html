@@ -1,0 +1,34 @@
+<div class="book-form">
+  <h5 class="title">Create book</h5>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <input placeholder="Book title" type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && controls.title.errors }" />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngIf="controls.title.errors && controls.title.errors.required">Title is required</div>
+        <div *ngIf="controls.title.hasError('pattern')">Title is empty</div>
+      </div>
+    </div>
+    <div>
+      <input placeholder="Author name" type="text" formControlName="authorName" class="form-control" [ngClass]="{ 'is-invalid': submitted && controls.authorName.errors }" />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngIf="controls.authorName.errors && controls.authorName.errors.required">Author name is required</div>
+        <div *ngIf="controls.authorName.hasError('pattern')">Author name is empty</div>
+      </div>
+    </div>
+    <div>
+      <input placeholder="Image url" type="text" formControlName="image" class="form-control" [ngClass]="{ 'is-invalid': submitted && controls.image.errors }" />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngIf="controls.image.errors && controls.image.errors.required">Image url is required</div>
+        <div *ngIf="controls.image.hasError('pattern')">Image url is empty</div>
+      </div>
+    </div>
+    <div>
+      <input placeholder="ISBN" type="text" formControlName="isbn" class="form-control" [ngClass]="{ 'is-invalid': submitted && controls.isbn.errors }" />
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngIf="controls.isbn.errors && controls.isbn.errors.required">ISBN is required</div>
+        <div *ngIf="controls.isbn.hasError('pattern')">ISBN is empty</div>
+      </div>
+    </div>
+    <button class="button-add">Add</button>
+  </form>
+</div>
