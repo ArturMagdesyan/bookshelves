@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ShelvesService} from '../../services/shelves.service';
 
 @Component({
   selector: 'app-shelve-form',
@@ -6,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shelve-form.component.scss']
 })
 export class ShelveFormComponent implements OnInit {
+  registerForm: FormGroup;
+  submitted = false;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private shelvesService: ShelvesService
+  ) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.pattern(/\S/)]],
+    });
+  }
+
+  get controls(): any {
+    return this.registerForm.controls;
+  }
+
+  public onSubmit(): void {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.shelvesService.create(this.registerForm.value.name);
+    this.onReset();
+  }
+
+  onReset(): void {
+    this.submitted = false;
+    this.registerForm.reset();
   }
 
 }

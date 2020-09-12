@@ -1,1 +1,11 @@
-<p>shelves-list works!</p>
+<div class="shelve-list">
+  <div class="shelve-item" *ngFor="let shelve of shelves">
+    <div class="link">
+      <a routerLink="/shelve/{{shelve.id}}">{{ shelve.name }}</a>
+    </div>
+    <div class="action">
+      <button class="b-edit" (click)="update(shelve)">Edit</button>
+      <button class="b-delete" (click)="delete(shelve)">Delete</button>
+    </div>
+  </div>
+</div>
