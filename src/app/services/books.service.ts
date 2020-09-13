@@ -10,7 +10,8 @@ import { IBook } from '../../models/book';
 import {ISearchResponse} from '../../models/searchResponse';
 
 import { searchBooksRequestData } from '../utils/searchBooksRequestData';
-import {Observable} from 'rxjs';
+import { searchByIsbnRequestData } from '../utils/searchByIsbnRequestData';
+import { regulateBookModel } from '../helpers/regulateModels';
 
 
 const API = 'https://api.itbook.store/1.0';
@@ -35,9 +36,18 @@ export class BooksService {
   }
 
   public search(bookName): ISearchResponse {
-    // this.http.get(API + `/search/${bookName}`, httpOptions).subscribe(res => {
+    // this.http.get(API + `/search/${bookName}`).subscribe(res => {
     //   console.log(res);
     // });
     return searchBooksRequestData;
+  }
+
+  public add(shelveId, isbn: string): void {
+    // this.http.get(API + `/books/${isbn}`).subscribe(res => {
+    //   console.log(res);
+    // });
+    const searchBook = searchByIsbnRequestData;
+    const book: IBook = Object.assign(regulateBookModel(searchBook), { id: uuidv4()});
+    this.store.dispatch(create({shelveId, book}));
   }
 }

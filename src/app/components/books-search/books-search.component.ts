@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { IBook } from '../../../models/book';
 
@@ -11,6 +11,8 @@ import {ISearchResponse} from '../../../models/searchResponse';
   styleUrls: ['./books-search.component.scss']
 })
 export class BooksSearchComponent implements OnInit {
+  @Input('shelveId') shelveId: string;
+
   bookName: string;
   searchTimeout;
   books: object[];
@@ -25,10 +27,13 @@ export class BooksSearchComponent implements OnInit {
   public search(): void {
     if (this.bookName.trim()) {
       clearTimeout(this.searchTimeout);
+
       this.searchTimeout = setTimeout(() => {
         this._getBooks(this.bookName);
       }, 300);
+
     } else {
+      clearTimeout(this.searchTimeout);
       this.books = [];
     }
   }
@@ -41,6 +46,6 @@ export class BooksSearchComponent implements OnInit {
   }
 
   public add(bookIsbn: string): void {
-    console.log(bookIsbn);
+    this.booksServices.add(this.shelveId, bookIsbn);
   }
 }

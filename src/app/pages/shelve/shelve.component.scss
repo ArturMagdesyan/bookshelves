@@ -2,6 +2,15 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  .go-back {
+    position: absolute;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    padding: 6px;
+    border: none;
+    outline: none;
+  }
   .shelve-title {
     margin: 0;
     text-align: center;

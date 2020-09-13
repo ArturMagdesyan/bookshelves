@@ -11,6 +11,7 @@ import {BooksService} from '../../services/books.service';
 export class BooksListComponent implements OnInit {
   @Input('books') books: IBook[];
   @Input('shelveId') shelveId: string;
+
   constructor(
     private booksService: BooksService
   ) { }
