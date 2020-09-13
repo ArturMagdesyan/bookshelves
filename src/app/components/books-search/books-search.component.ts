@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { IBook } from '../../../models/book';
-
 import {BooksService} from '../../services/books.service';
-import {ISearchResponse} from '../../../models/searchResponse';
 
 @Component({
   selector: 'app-books-search',
@@ -29,19 +26,17 @@ export class BooksSearchComponent implements OnInit {
       clearTimeout(this.searchTimeout);
 
       this.searchTimeout = setTimeout(() => {
-        this._getBooks(this.bookName);
+
+        this.booksServices.search(this.bookName).subscribe(res => {
+          const response = JSON.parse(JSON.stringify(res));
+          this.books = response.books;
+        });
+
       }, 300);
 
     } else {
       clearTimeout(this.searchTimeout);
       this.books = [];
-    }
-  }
-
-  public _getBooks(bookName): void {
-    const res: ISearchResponse = this.booksServices.search(bookName);
-    if (!res.error) {
-      this.books = res.books;
     }
   }
 
