@@ -1,4 +1,5 @@
 <div class="shelve">
+  <button class="go-back" routerLink="/">Go Back</button>
   <h5 class="shelve-title">{{ shelve.name }}</h5>
   <div class="books-list">
     <app-books-list
@@ -7,7 +8,7 @@
     ></app-books-list>
   </div>
   <div class="books-search">
-    <app-books-search></app-books-search>
+    <app-books-search [shelveId]="shelve.id"></app-books-search>
   </div>
   <div class="book-form">
     <app-book-form [shelveId]="shelve.id"></app-book-form>
