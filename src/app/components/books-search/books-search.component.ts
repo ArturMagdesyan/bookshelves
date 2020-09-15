@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {BooksService} from '../../services/books.service';
+import { BooksService } from '../../services/books.service';
+import {IBook} from '../../../models/book';
+import { existsBook } from '../../helpers/checkBookExistsInShelf';
 
 @Component({
   selector: 'app-books-search',
@@ -9,6 +11,7 @@ import {BooksService} from '../../services/books.service';
 })
 export class BooksSearchComponent implements OnInit {
   @Input('shelveId') shelveId: string;
+  @Input('books') shelveBooks: IBook[];
 
   bookName: string;
   searchTimeout;
@@ -26,12 +29,10 @@ export class BooksSearchComponent implements OnInit {
       clearTimeout(this.searchTimeout);
 
       this.searchTimeout = setTimeout(() => {
-
         this.booksServices.search(this.bookName).subscribe(res => {
           const response = JSON.parse(JSON.stringify(res));
           this.books = response.books;
         });
-
       }, 300);
 
     } else {
@@ -40,7 +41,14 @@ export class BooksSearchComponent implements OnInit {
     }
   }
 
-  public add(bookIsbn: string): void {
-    this.booksServices.add(this.shelveId, bookIsbn);
+  public add(book, index): void {
+    const isExistsBook = existsBook(this.shelveBooks, book);
+    if (isExistsBook) {
+      alert('This book exists in the shelf');
+
+      return;
+    }
+    this.booksServices.add(this.shelveId, book.isbn13);
+    this.books.splice(index, 1);
   }
 }

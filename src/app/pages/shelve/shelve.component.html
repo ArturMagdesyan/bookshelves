@@ -8,10 +8,16 @@
     ></app-books-list>
   </div>
   <div class="books-search">
-    <app-books-search [shelveId]="shelve.id"></app-books-search>
+    <app-books-search
+      [books]=shelve.books
+      [shelveId]="shelve.id"
+    ></app-books-search>
   </div>
   <div class="book-form">
-    <app-book-form [shelveId]="shelve.id"></app-book-form>
+    <app-book-form
+      [books]=shelve.books
+      [shelveId]="shelve.id"
+    ></app-book-form>
   </div>
 </div>
 
