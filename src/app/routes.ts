@@ -5,5 +5,5 @@ import {ShelveComponent} from './pages/shelve/shelve.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'shelve/:id', component: ShelveComponent }
+  { path: 'shelve/:id', loadChildren: () => import('./pages/shelve/shelve.module').then(m => m.ShelveModule) }
 ];

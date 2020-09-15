@@ -22,6 +22,7 @@
     "@larscom/ngrx-store-storagesync": "^6.2.2",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^3.2.4",
+    "ngrx-store-localstorage": "^10.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "uuid": "^8.3.0",
