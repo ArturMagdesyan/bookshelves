@@ -4,10 +4,10 @@
     <input type="text" [(ngModel)]="bookName" (keyup)="search()">
   </div>
   <div class="books-search-list">
-    <div class="search-book-item" *ngFor="let book of books">
+    <div class="search-book-item" *ngFor="let book of books; let i = index">
       <div>{{ book.title }}</div>
       <div class="book-add">
-        <button (click)="add(book['isbn13'])">Add</button>
+        <button (click)="add(book, i)">Add</button>
       </div>
     </div>
   </div>

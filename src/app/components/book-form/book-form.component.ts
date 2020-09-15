@@ -1,6 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BooksService} from '../../services/books.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { BooksService } from '../../services/books.service';
+
+import { IBook } from '../../../models/book';
+import { existsBook } from '../../helpers/checkBookExistsInShelf';
 
 @Component({
   selector: 'app-book-form',
@@ -9,6 +13,7 @@ import {BooksService} from '../../services/books.service';
 })
 export class BookFormComponent implements OnInit {
   @Input('shelveId') shelveId: string;
+  @Input('books') shelveBooks: IBook[];
 
   registerForm: FormGroup;
   submitted = false;
@@ -36,6 +41,13 @@ export class BookFormComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    const isExistsBook = existsBook(this.shelveBooks, this.registerForm.value);
+    if (isExistsBook) {
+      alert('This book exists in the shelf');
+      this.onReset();
+
+      return;
+    }
     this.booksService.create(this.shelveId, this.registerForm.value);
     this.onReset();
   }
@@ -44,4 +56,5 @@ export class BookFormComponent implements OnInit {
     this.submitted = false;
     this.registerForm.reset();
   }
+
 }
