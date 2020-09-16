@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ShelvesService} from '../../services/shelves.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import Swal from 'sweetalert2';
+
+import { ShelvesService } from '../../services/shelves.service';
 
 @Component({
   selector: 'app-shelve-form',
@@ -32,6 +35,10 @@ export class ShelveFormComponent implements OnInit {
       return;
     }
     this.shelvesService.create(this.registerForm.value.name);
+    Swal.fire({
+      icon: 'success',
+      text: 'Shelf successfully created!',
+    });
     this.onReset();
   }
 

@@ -1,23 +1,26 @@
 <div class="shelve">
-  <button class="go-back" routerLink="/">Go Back</button>
-  <h5 class="shelve-title">{{ shelve.name }}</h5>
-  <div class="books-list">
-    <app-books-list
-      [shelveId]="shelve.id"
-      [books]=shelve.books
-    ></app-books-list>
-  </div>
-  <div class="books-search">
-    <app-books-search
-      [books]=shelve.books
-      [shelveId]="shelve.id"
-    ></app-books-search>
-  </div>
-  <div class="book-form">
-    <app-book-form
-      [books]=shelve.books
-      [shelveId]="shelve.id"
-    ></app-book-form>
+  <div class="container">
+    <div class="shelve-name">Shelf {{ shelve.name }}</div>
+    <mat-tab-group>
+      <mat-tab label="Books">
+        <app-books-list
+          [shelveId]="shelve.id"
+          [books]=shelve.books
+        ></app-books-list>
+      </mat-tab>
+      <mat-tab label="Search">
+        <app-books-search
+          [books]=shelve.books
+          [shelveId]="shelve.id"
+        ></app-books-search>
+      </mat-tab>
+      <mat-tab label="Form">
+        <app-book-form
+          [books]=shelve.books
+          [shelveId]="shelve.id"
+        ></app-book-form>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
 

@@ -1,29 +1,30 @@
 .books-list {
-  box-shadow: 0px 0px 4px 0px;
-  border-radius: 4px;
-  min-height: 400px;
-  .title {
+  margin-top: 30px;
+  width: 100%;
+  .no-book {
     text-align: center;
+    color: red;
   }
-  .book-item {
-    padding: 10px;
+  table {
+    box-shadow: none;
+    width: 100%;
+    td,th {
+      text-align: center;
+    }
+
+    .image-column {
+      width: 100px;
+    }
+  }
+
+  .book-image {
     display: flex;
-    justify-content: space-between;
-  }
-  button {
-    width: 50px;
-    padding: 5px 0;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .b-delete {
-    background-color: red;
-  }
-  .b-edit {
-    background-color: orange;
+    justify-content: center;
+    width: 80px;
+    padding: 4px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+    }
   }
 }

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bookshelves"
+    }
+  },
+  "defaultProject": "bookshelves",
+  "cli": {
+    "analytics": "66cf4726-cd5c-4533-a408-ccacddc5a42d"
+  }
 }
