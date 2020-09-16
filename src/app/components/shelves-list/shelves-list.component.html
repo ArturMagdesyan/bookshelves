@@ -1,11 +1,19 @@
 <div class="shelve-list">
-  <div class="shelve-item" *ngFor="let shelve of shelves">
-    <div class="link">
-      <a routerLink="/shelve/{{shelve.id}}">{{ shelve.name }}</a>
-    </div>
-    <div class="action">
-      <button class="b-edit" (click)="update(shelve)">Edit</button>
-      <button class="b-delete" (click)="delete(shelve)">Delete</button>
-    </div>
+  <div class="container">
+    <mat-grid-list cols="4" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let shelve of shelves" class="shelve-grid">
+        <mat-card class="shelve-card">
+          <mat-card-content>
+            <mat-card-title class="shelve-title">
+              <a routerLink="/shelve/{{shelve.id}}">{{ shelve.name }}</a>
+            </mat-card-title>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="update(shelve)">EDIT</button>
+            <button mat-button color="primary" (click)="delete(shelve)">DELETE</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
 </div>

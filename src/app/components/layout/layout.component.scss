@@ -1,0 +1,21 @@
+.layout {
+  .logo {
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 40px;
+    img {
+      width: 100%;
+    }
+  }
+  >div {
+    display: flex;
+    justify-content: space-between;
+    .layout-text {
+      font-size: 20px;
+      text-shadow: 1px 1px 0px #75d8fe;
+      color: hsl(0deg 0% 100%);
+    }
+  }
+}

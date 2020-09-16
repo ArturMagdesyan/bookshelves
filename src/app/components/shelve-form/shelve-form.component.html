@@ -1,13 +1,18 @@
 <div class="shelve-from">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="shelve-name">Shelve form</div>
-      <input placeholder="Shelve name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && controls.name.errors }" />
-      <div *ngIf="submitted" class="invalid-feedback">
-        <div *ngIf="controls.name.errors && controls.name.errors.required">Name is required</div>
-        <div *ngIf="controls.name.hasError('pattern')">Name is empty</div>
+    <div class="container">
+      <div class="example-button-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Shelve name</mat-label>
+          <input matInput placeholder="" type="text" formControlName="name"
+                 [ngClass]="{ 'is-invalid': submitted && controls.name.errors }">
+        </mat-form-field>
+        <button class="create-shelve" mat-raised-button color="primary">Create new</button>
       </div>
-    <div>
-      <button class="button-add">Add</button>
+    </div>
+    <div *ngIf="submitted" class="invalid-feedback">
+      <div *ngIf="controls.name.errors && controls.name.errors.required">Name is required</div>
+      <div *ngIf="controls.name.hasError('pattern')">Name is empty</div>
     </div>
   </form>
 </div>

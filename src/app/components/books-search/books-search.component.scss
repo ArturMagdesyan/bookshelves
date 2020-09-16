@@ -1,47 +1,43 @@
 .books-search {
-  box-shadow: 0px 0px 4px 0px;
-  border-radius: 4px;
-  min-height: 400px;
-  .title {
-    text-align: center;
+  margin-top: 30px;
+  padding-top: 30px;
+  .search-control {
+    width: 100%;
+    max-width: 520px;
   }
   .search {
-    margin-bottom: 15px;
     text-align: center;
-    width: 100%;
     input {
-      min-width: 200px;
-      padding: 7px;
-      border-radius: 6px;
     }
   }
-  .books-search-list {
-    width: 100%;
+  .search-loader {
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+  }
+  table {
+    overflow-y: hidden;
+    margin: 0 auto;
+    box-shadow: none;
+    width: 70%;
+    td,th {
+      width: 33.333333%;
+      text-align: center;
+    }
+
+    .image-column {
+      width: 100px;
+    }
+  }
+
+  .book-image {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    .search-book-item {
-      width: 80%;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 0 2px 0;
-      padding: 3px;
-      border-radius: 5px;
-      .book-add {
-        button {
-          background: orange;
-          width: 40px;
-          padding: 5px 0;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          color: white;
-          font-size: 16px;
-          cursor: pointer;
-        }
-      }
+    width: 80px;
+    padding: 4px;
+    margin: 0 auto;
+    img {
+      width: 100%;
     }
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import {ShelvesState} from '../../../store/reducers/shelves';
-import {getShelves} from '../../../store/selector';
-import {INewShelve, IShelve} from '../../../models/shelve';
-import {ShelvesService} from '../../services/shelves.service';
+import Swal from 'sweetalert2';
+
+import { ShelvesState } from '../../../store/reducers/shelves';
+import { INewShelve, IShelve } from '../../../models/shelve';
+import { ShelvesService } from '../../services/shelves.service';
 
 @Component({
   selector: 'app-shelves-list',
@@ -13,7 +14,7 @@ import {ShelvesService} from '../../services/shelves.service';
 })
 export class ShelvesListComponent implements OnInit {
   shelves: IShelve[];
-  updateShelve: INewShelve;
+
   constructor(
     private shelvesService: ShelvesService,
     private store: Store<ShelvesState>,
@@ -25,16 +26,53 @@ export class ShelvesListComponent implements OnInit {
 
   public delete(shelve: IShelve): void {
     const {name, id} = shelve;
-    confirm(`You really want to delete the shelve: ${name}`) && this.shelvesService.delete(id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You really want to delete the shelve: ${name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.shelvesService.delete(id);
+        Swal.fire({
+          icon: 'success',
+          text: `Shelf ${ name } successfully deleted!`,
+        });
+      }
+    });
   }
 
   public update(shelve: IShelve): void {
-    const {name, id} = shelve;
+    const { id } = shelve;
     let newName: string;
 
-    newName = prompt('Please enter shelve name', name);
-    if (newName.trim()) {
-      this.shelvesService.update({name: newName, id});
-    }
+    Swal.fire({
+      title: 'Please enter shelve name',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      preConfirm: shelfname => {
+        newName = shelfname;
+      },
+    }).then((result) => {
+      if (newName.trim()) {
+        this.shelvesService.update({name: newName, id});
+        Swal.fire({
+          icon: 'success',
+          text: 'Shelf name successfully changed!',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: 'Shelf name required!',
+        });
+      }
+    });
   }
 }

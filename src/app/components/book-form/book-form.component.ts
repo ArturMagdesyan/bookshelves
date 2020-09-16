@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import Swal from 'sweetalert2';
+
 import { BooksService } from '../../services/books.service';
 
 import { IBook } from '../../../models/book';
 import { existsBook } from '../../helpers/checkBookExistsInShelf';
+
 
 @Component({
   selector: 'app-book-form',
@@ -43,13 +46,20 @@ export class BookFormComponent implements OnInit {
     }
     const isExistsBook = existsBook(this.shelveBooks, this.registerForm.value);
     if (isExistsBook) {
-      alert('This book exists in the shelf');
+      Swal.fire({
+        icon: 'error',
+        text: 'This book exists in the shelf!',
+      });
       this.onReset();
 
       return;
     }
     this.booksService.create(this.shelveId, this.registerForm.value);
     this.onReset();
+    Swal.fire({
+      icon: 'success',
+      text: 'Book successfully created!',
+    });
   }
 
   onReset(): void {
